@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        * {
+            box-sizing: border-box;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            cursor: default;
+            user-select: none;
+        }
+
+        .font_8bit {
+            display: inline-block;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            padding: 10px;
+            overflow: hidden;
+            border: none;
+            font: normal "VT323", Helvetica, sans-serif;
+            color: rgba(255, 255, 0, 1);
+            text-align: center;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            text-shadow: 5px 5px 0 rgba(255, 0, 0, 1);
+        }
+
+        html {
+            background: linear-gradient(#C6FFDD, #FBD786, #f7797d);
+        }
+
+        .map {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            border: none;
+            font: normal 100%/normal Arial, Helvetica, sans-serif;
+            color: rgba(255, 255, 255, 1);
+            -o-text-overflow: clip;
+            text-overflow: clip;
+            background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.0980392) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.0980392) 75%, rgba(0, 0, 0, 0.0980392) 0), -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.0980392) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.0980392) 75%, rgba(0, 0, 0, 0.0980392) 0), rgba(255, 255, 255, 1);
+            background: -moz-linear-gradient(45deg, rgba(0, 0, 0, 0.0980392) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.0980392) 75%, rgba(0, 0, 0, 0.0980392) 0), -moz-linear-gradient(45deg, rgba(0, 0, 0, 0.0980392) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.0980392) 75%, rgba(0, 0, 0, 0.0980392) 0), rgba(255, 255, 255, 1);
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.0980392) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.0980392) 75%, rgba(0, 0, 0, 0.0980392) 0), linear-gradient(45deg, rgba(0, 0, 0, 0.0980392) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.0980392) 75%, rgba(0, 0, 0, 0.0980392) 0), rgba(255, 255, 255, 1);
+            background-position: 0 0, 20px 20px;
+            -webkit-background-origin: padding-box;
+            background-origin: padding-box;
+            -webkit-background-clip: border-box;
+            background-clip: border-box;
+            -webkit-background-size: 40px 40px;
+            background-size: 40px 40px;
+        }
+
+        .map {
+            position: relative;
+            width: 460px;
+            height: 600px;
+            margin: 50px auto;
+        }
+
+        .left,
+        .right {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            font-size: 30px;
+            overflow: hidden;
+        }
+
+        .left {
+            left: -50%;
+        }
+
+        .right {
+            left: 100%;
+        }
+
+        .left>div {
+            background: linear-gradient(#3C3B3F, #605C3C);
+            border-radius: 15px 0 0 15px;
+            padding: 0;
+            margin: 20px;
+            width: 100%;
+        }
+
+        .map span {
+            margin-top: 10px;
+            font-size: 25px;
+            text-shadow: none;
+            color: rgb(255, 255, 255);
+            width: 100%;
+            display: block;
+        }
+
+        .right span {
+            display: inline;
+        }
+
+        .left .button1 {
+            margin-top: 62px;
+        }
+
+        .button1,
+        .button2 {
+            cursor: pointer;
+        }
+
+        .right>ul {
+            background: linear-gradient(#3C3B3F, #605C3C);
+            width: 100%;
+            padding: 20px 0;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .right>ul>li {
+            margin-top: 10px;
+        }
+
+        .right>ul>.first {
+            width: 100%;
+            margin: 0;
+            text-align: center;
+        }
+
+        .alert {
+            width: 60%;
+            height: 25%;
+            padding-top: 30px;
+            border: 8px solid black;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: gray;
+            text-align: center;
+            font-size: 20px;
+            color: orange;
+        }
+
+        .player span,
+        .score span {
+            height: 30px;
+        }
+
+        .hide {
+            opacity: 0;
+        }
+
+        .show {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <audio src="./audio/Ujico＊ - ココロトラベル.mp3" id='audio1' autoplay preload loop></audio>
+    <div class="map">
+        <div class="left ">
+            <div class="player font_8bit">PLAYER:<span></span></div>
+            <div class="score font_8bit">SCORE:<span></span></div>
+            <div class="button1 font_8bit">START</div>
+            <div class="button2 font_8bit">TIME OUT</div>
+        </div>
+        <div class="right">
+            <ul class="rank font_8bit">
+                <li class="first">RANK</li>
+                <li><span class="name">player&nbsp;:</span><span class="num">&nbsp;score</span></li>
+            </ul>
+        </div>
+        <div class="food"></div>
+        <div class="alert show">
+        </div>
+        <!-- <div class="head"></div>
+        <div class="body_1"></div>
+        <div class="body_2"></div> -->
+    </div>
+    <script>
+        // 设置游戏 START 开关
+        window.time_out_flag = false
+        window.start = false//默认关闭
+        // Snake 构造函数
+        function Snake(head, body_1, body_2, long) {
+            this.head = head
+            this.body_1 = body_1
+            this.body_2 = body_2
+            this.long = long
+        }
+        // Head 构造函数
+        function Head(x, y, direction) {
+            this.x = x// 这里的 x 指的是横向移动的方块数量，每个方块的宽高是20px，所以换算成px时要乘20，下面的y同理。
+            this.y = y
+            this.color = 'green'
+            this.direction = direction// 用来控制蛇头前进的方向
+        }
+        // Body 构造函数
+        function Body(x, y, color) {
+            this.x = x
+            this.y = y
+            this.color = color
+        }
+        var map = document.querySelector('.map');// 获取地图dom
+        // get_color 随机生成颜色函数
+        var get_color = function () {
+            var a = Math.random() * 255
+            var b = Math.random() * 255
+            var c = Math.random() * 255
+            return 'rgb(' + a + ',' + b + ',' + c + ')'
+        }
+        // creat_body 生成蛇身函数（在 eat 之后调用）
+        Snake.prototype.creat_body = function () {
+            var index = snake.long      //获取原本的long
+            snake['body_' + index] = {} //添加一段蛇身
+            snake.long++                //更新long
+            // 给新的蛇身添加属性
+            snake['body_' + index].x = snake['body_' + (index - 1)].x
+            snake['body_' + index].y = snake['body_' + (index - 1)].y
+            snake['body_' + index].color = get_color()
+            // 在页面生成新的蛇身
+            map.innerHTML += `
+            <div class='body_${index}'><div>
+            `
+            // 获取新蛇身的 dom
+            var body = document.querySelector('.body_' + index)
+            // 修改蛇身的 css
+            body.style.position = 'absolute'
+            body.style.width = '20px'
+            body.style.height = '20px'
+            body.style.backgroundColor = snake['body_' + index].color + ''
+            body.style.left = snake['body_' + index].x * 20 + 'px'
+            body.style.top = snake['body_' + index].y * 20 + 'px'
+        };
+        // snake 初始化 IIFE
+        (function () {
+            var score = document.querySelector('.score span')
+            score.innerText = '0'
+            var head = new Head(11, 21, 'up')
+            var body_1 = new Body(11, 22, get_color(), 1)
+            var body_2 = new Body(11, 23, get_color(), 2)
+            var snake = new Snake(head, body_1, body_2, 3)
+            // 生成页面元素
+            map.innerHTML += `
+            <div class="head"></div>
+            <div class="body_1"></div>
+            <div class="body_2"></div>
+            `
+            // 获取蛇头、蛇身的 dom
+            var head = document.querySelector('.head')
+            var body_1 = document.querySelector('.body_1')
+            var body_2 = document.querySelector('.body_2')
+            // 修改蛇头的 css
+            head.style.position = 'absolute'
+            head.style.width = '20px'
+            head.style.height = '20px'
+            head.style.backgroundColor = snake.head.color + ''
+            head.style.left = snake.head.x * 20 + 'px'
+            head.style.top = snake.head.y * 20 + 'px'
+            // 修改蛇身的 css
+            body_1.style.position = 'absolute'
+            body_2.style.position = 'absolute'
+            body_1.style.width = '20px'
+            body_1.style.height = '20px'
+            body_2.style.width = '20px'
+            body_2.style.height = '20px'
+            body_1.style.backgroundColor = snake.body_1.color + ''
+            body_2.style.backgroundColor = snake.body_2.color + ''
+            body_1.style.left = snake.body_1.x * 20 + 'px'
+            body_1.style.top = snake.body_1.y * 20 + 'px'
+            body_2.style.left = snake.body_2.x * 20 + 'px'
+            body_2.style.top = snake.body_2.y * 20 + 'px'
+            // 移动函数
+            Snake.prototype.remove = setInterval(function () {
+                // 蛇头移动
+                var time_out_button = document.querySelector('.button2')
+                time_out_button.onclick = function () {
+                    if (!window.time_out_flag) { return }
+                    window.start = !window.start
+                }
+                if (!window.start) {
+                    return
+                }
+                function control_head() {
+                    var head = document.querySelector('.head')
+                    head.style.left = snake.head.x * 20 + 'px'
+                    head.style.top = snake.head.y * 20 + 'px'
+                }
+                // 清除定时器和停止运动应该是两个判定条件 当蛇头贴墙的时候 赋值函数段应该继续执行 但移动函数段却不能再执行了
+                // 这样才能保证蛇头贴墙的时候，还能转弯
+                if (snake.head.x < 0 || snake.head.x > 22 || snake.head.y < 0 || snake.head.y > 29) {
+                    clearInterval(snake.remove)// 这里当蛇头贴墙、并且打算再前进的时候 停止运动 并清除定时器 
+                    var alert = document.querySelector('.alert')
+                    alert.className = 'alert showf'
+                    alert.innerText = 'GAME OVER !'
+                    alert.style.paddingTop = '0'
+                } else {
+                    // 蛇身赋值
+                    for (var i = snake.long - 1; i >= 1; i--) {
+                        if (i === 1) {
+                            snake['body_' + i].x = snake.head.x
+                            snake['body_' + i].y = snake.head.y
+                        } else {
+                            snake['body_' + i].x = snake['body_' + (i - 1)].x
+                            snake['body_' + i].y = snake['body_' + (i - 1)].y
+                        }
+                    }
+                    // 蛇头赋值
+                    switch (snake.head.direction) {
+                        case 'up': snake.head.y -= 1; break;
+                        case 'right': snake.head.x += 1; break;
+                        case 'down': snake.head.y += 1; break;
+                        case 'left': snake.head.x -= 1; break;
+                    }
+                    // 当蛇吃水果时 调用 eat 函数
+                    if (snake.head.x === parseInt(food_dom.style.left) / 20 && snake.head.y === parseInt(food_dom.style.top) / 20) {
+                        food.eat()
+                    }
+                    // 设置蛇头按键禁用的开关（放置快速连按两个方向键 导致的蛇回头问题）
+                    !snake.head.flag ? snake.head.flag = !snake.head.flag : ''
+                }
+                // 开始移动
+                if (snake.head.x < 0 || snake.head.x > 22 || snake.head.y < 0 || snake.head.y > 29) { } else {
+                    (function () {
+                        for (var i = snake.long - 1; i >= 1; i--) {
+                            var body = document.querySelector('.body_' + i)
+                            body.style.left = snake['body_' + i].x * 20 + 'px'
+                            body.style.top = snake['body_' + i].y * 20 + 'px'
+                            body.style.backgroundColor = get_color()
+                        }
+                    })()
+                    control_head()
+                }
+            }, 150)
+            window.snake = snake // 暴露snake对象 
+            // 窗口默认显示
+            var alert = document.querySelector('.alert')
+            alert.innerHTML = `START / 按ENTER键<br>开始游戏！
+            <input class='input' placeholder='请输入您的昵称：'>
+            `
+            var input = document.querySelector('.alert input')
+            input.style.width = '90%'
+            input.style.height = '25%'
+            input.style.marginTop = '15px'
+            input.style.backgroundColor = '#000'
+            input.style.color = 'orange'
+            input.style.border = '0'
+            input.style.paddingLeft = '25px'
+        }
+        )()
+        // 变向函数（监听方向键 改变蛇头方向）
+        snake.head.flag = true
+        window.onkeyup = function (e) {
+            e.keyCode == 13 ? START() : ''
+            var direction_pre = snake.head.direction
+            if (snake.head.flag === false) {
+                return
+                // 如果开关为被修改状态，则说明在这一段运动出发的间隔中，已经改变过一次蛇头方向。此时用return推出函数执行，则可以避免短时间内重复修改方向。
+                // 这里解决了快速按键导致蛇回头的BUG
+            }
+            switch (e.keyCode) {
+                // 如果上一步的方向和这一步监听获取到的方向相反，则break。目的：阻止蛇回头
+                case 37: if (direction_pre === 'right') { break } snake.head.direction = 'left'; snake.head.flag = false; break;
+                case 38: if (direction_pre === 'down') { break } snake.head.direction = 'up'; snake.head.flag = !snake.head.flag; break;
+                case 39: if (direction_pre === 'left') { break } snake.head.direction = 'right'; snake.head.flag = !snake.head.flag; break;
+                case 40: if (direction_pre === 'up') { break } snake.head.direction = 'down'; snake.head.flag = !snake.head.flag; break;
+            }
+        }
+        // 食物的构造函数
+        function Food(x, y, type) {
+            this.x = x
+            this.y = y
+            this.type = type
+        };
+        // 创建水果库
+        var type_house = ['https://www.shareicon.net/data/128x128/2015/12/23/692043_apple_512x512.png', 'https://www.shareicon.net/data/128x128/2015/09/17/642224_food_512x512.png', 'https://www.shareicon.net/data/128x128/2016/01/08/700001_health_512x512.png', 'https://www.shareicon.net/data/128x128/2015/10/04/650984_food_512x512.png', 'https://www.shareicon.net/data/128x128/2015/09/15/640918_wine_512x512.png', 'https://www.shareicon.net/data/128x128/2015/12/22/691191_food_512x512.png', 'https://www.shareicon.net/data/128x128/2015/12/21/690636_food_512x512.png']
+        // 封装食物避撞函数
+        Food.prototype.avoid = function () {
+            var x_head = snake.head.x// 先取得蛇头的 x、y
+            var y_head = snake.head.y
+            // 再取蛇身 x、y
+            var long = snake.long// 拿到蛇的总长度
+            var body = []
+            for (var i = 1; i < long; i++) {
+                body[i - 1] = {}
+                body[i - 1].x = snake['body_' + i].x
+                body[i - 1].y = snake['body_' + i].y
+            }
+            // x 取值范围应该在 0~22 之间，y 在 0~29 之间
+            do {
+                x = Math.floor(Math.random() * (22 + 1))
+                y = Math.floor(Math.random() * (29 + 1))
+            } while (x === x_head || y === y_head || (function () {
+                for (var i = 1; i < long; i++) {
+                    if (body[i - 1].x === x || body[i - 1].y === y) {
+                        return true
+                    }
+                }
+            })())
+        };
+        // 封装一个初始化食物的 IIFE
+        (function () {
+            Food.prototype.avoid()// 先调用避撞函数 获得可用的 x、y
+            var type = type_house[Math.floor(Math.random() * 7)]// 随机获取水果样式
+            var food = new Food(x, y, type)// 创建 food 对象
+            window.food = food // 暴露 food 对象
+            window.food_dom = document.querySelector('.food')// 获取 food 的 dom
+            // 控制页面中的 food 的 dom
+            food_dom.style.width = '20px'
+            food_dom.style.height = '20px'
+            food_dom.style.background = 'url(' + food.type + ')'
+            food_dom.style.position = 'absolute'
+            food_dom.style.left = food.x * 20 + 'px'
+            food_dom.style.top = food.y * 20 + 'px'
+            food_dom.style.backgroundColor = 'white'
+            food_dom.style.backgroundSize = 'contain'
+        })()
+        // 封装 eat 的函数
+        Food.prototype.eat = function () {
+            food.avoid()
+            food.type = type_house[Math.floor(Math.random() * 7)]
+            food_dom.style.background = 'url(' + food.type + ')'
+            food_dom.style.backgroundSize = 'contain'
+            food_dom.style.left = x * 20 + 'px'
+            food_dom.style.top = y * 20 + 'px'
+            snake.creat_body();
+            window.food_dom = document.querySelector('.food')// 实时更新dom的获取状态！！！
+            snake.change_score()// 改变分数
+        }
+        // 封装一个分数变化函数 change_score
+        Snake.prototype.change_score = function () {
+            Snake.prototype.score = document.querySelector('.score span')
+            snake.score.innerHTML = snake.long - 3
+        }
+        function START() {
+            var audio1 = document.querySelector('#audio1');
+            audio1.play();
+            var alert = document.querySelector('.alert')
+            alert.className = 'alert hide'//隐藏alert
+            alert.style.lineHeight = '130px'//把alert里面的文字变回垂直居中
+            window.start = true//打开移动开关
+            var player = document.querySelector('.player span')
+            var player_name = document.querySelector('.alert input')
+            player_name.remove()//获取到输入值之后 移除input
+            player.innerText = player_name.value
+            window.time_out_flag = true//开启 time out 按钮
+        }
+        var start_button = document.querySelector('.button1')
+        start_button.onclick = function () {
+            START()
+        }
+        var time_out_button = document.querySelector('.button2')
+        time_out_button.onclick = function () {
+            if (!window.time_out_flag) { return }
+            window.start = !window.start
+            console.log(111);
+        }
+    </script>
+</body>
+
+</html>
